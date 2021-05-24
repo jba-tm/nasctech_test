@@ -13,13 +13,13 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 WEBSITE_URL = "http://127.0.0.1:8000"  # without trailing slash
 
-INSTALLED_APPS = INSTALLED_APPS + [
-    'debug_toolbar',
-]
+# INSTALLED_APPS = INSTALLED_APPS + [
+#     'debug_toolbar',
+# ]
 
-MIDDLEWARE = MIDDLEWARE + [
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
-]
+# MIDDLEWARE = MIDDLEWARE + [
+#     'debug_toolbar.middleware.DebugToolbarMiddleware',
+# ]
 
 
 DATABASES = {

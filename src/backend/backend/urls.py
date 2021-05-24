@@ -14,8 +14,19 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+from django.views.generic import TemplateView
+from rest_framework.schemas import get_schema_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/', include('backend.apps.api.urls')),
+
+    path('openapi/', get_schema_view(
+        title="School Service",
+        description="API developers hoping to use our service"
+    ), name='openapi-schema'),
+    path('docs/',
+         TemplateView.as_view(extra_context={'schema_url': 'openapi-schema'}, template_name='docs/swagger-ui.html'),
+         name='swagger-ui'),
 ]
