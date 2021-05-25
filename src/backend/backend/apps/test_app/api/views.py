@@ -7,7 +7,11 @@ class DataAPIView(views.APIView):
     http_method_names = ['get', ]
 
     def get(self, request, *args, **kwargs):
-        data = list(map(int, request.query_params.get('data', '').split(',')))
+        try:
+            data = list(map(int, request.query_params.get('data', '').split(',')))
+
+        except ValueError as e:
+            raise exceptions.ValidationError(e)
         rules = request.query_params.get('rule', '').split(',')
         if '' in rules:
             rules.remove('')
